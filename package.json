@@ -1,0 +1,29 @@
+{
+    "name": "time_stamp_micorserive",
+    "version": "0.0.1",
+    "description": "challenge from fcc",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dot": "^1.1.3",
+        "dotenv": "^16.1.4",
+        "express": "^4.18.2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jellyware-1/TimeStamp_microservice.git"
+    },
+    "bugs": {
+        "url": "https://github.com/jellyware-1/TimeStamp_microservice/issues"
+    },
+    "homepage": "https://github.com/jellyware-1/TimeStamp_microservice",
+    "author": "Jay",
+    "keywords": [
+        "node",
+        "express"
+    ],
+    "license": "MIT"
+}
