@@ -28,7 +28,7 @@ app.get('/api/:date?', (req, res) => {
                 res.json({"unix": res_date.valueOf(), "utc": res_date.toUTCString()});
 
                 if(res_date.toUTCString() == "Invalid Date"){
-                    res.json({"error":"Invalid Date"});
+                    res.json({error:"Invalid Date"});
                 }
             }
             res.json({"unix": Date.parse(req.params.date), "utc": res_date.toUTCString()});
@@ -37,7 +37,7 @@ app.get('/api/:date?', (req, res) => {
         
     }
     catch(err){
-        res.json({"error":"Invalid Date"})
+        res.json({error:"Invalid Date"})
     }
 });
 
