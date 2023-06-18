@@ -15,26 +15,32 @@ app.get('/', (req, res) => {
 
 app.get('/api/:date?', (req, res) => {
     try{
-        let res_date;
+        let unix_out;
+        let utc_out;
 
         if(req.params.date == null){
-            res_date = new Date();
-            res.json({"unix": Date.now(), "utc": res_date.toUTCString()});
+            unix_out = Date.now();
+            utc_out = (new Date()).toUTCString();
         }
         else{
-            res_date = new Date(req.params.date);
-            if(res_date.toUTCString() == "Invalid Date"){
-                res_date = new Date(req.params.date * 1);
-                res.json({"unix": res_date.valueOf(), "utc": res_date.toUTCString()});
 
-                if(res_date.toUTCString() == "Invalid Date"){
-                    res.json({error:"Invalid Date"});
+            let para = req.params.date;
+
+            //checks if it is a unix timestamp or now
+            if((new Date(para)).toUTCString() == "Invalid Date"){
+                //if it is - it must be multiplied by 1
+                para = req.params.date * 1;
+
+                //if still invalid - then invalid input
+                if((new Date(para)).toUTCString() == "Invalid Date"){
+                    throw new Error();
                 }
             }
-            res.json({"unix": Date.parse(req.params.date), "utc": res_date.toUTCString()});
+            unix_out = (new Date(para)).valueOf();
+            utc_out = (new Date(para)).toUTCString();
         }
 
-        
+        res.json({"unix": unix_out, "utc": utc_out});
     }
     catch(err){
         res.json({error:"Invalid Date"})
